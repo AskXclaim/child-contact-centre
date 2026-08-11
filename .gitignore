@@ -8,7 +8,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-
+**/.idea/workspace.xml **/.idea/tasks.xml
 # AWS User-specific
 .idea/**/aws.xml
 
@@ -719,3 +719,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+!/.idea/
