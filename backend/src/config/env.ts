@@ -1,3 +1,4 @@
+import "dotenv/config";
 import {z} from "zod";
 
 const EnvSchema = z.object({
@@ -11,7 +12,7 @@ const EnvSchema = z.object({
 export const config = EnvSchema.parse({
     NODE_ENV: process.env.NODE_ENV,
     PORT: process.env.PORT,
-    MONGODB_URI: process.env.MONGODB_URI,
-    MONGODB_DATABASE: process.env.MONGODB_DATABASE,
+    MONGO_URI: process.env.MONGO_URI,
+    MONGO_DATABASE: process.env.MONGO_DATABASE,
     LOG_LEVEL: process.env.LOG_LEVEL
 });
