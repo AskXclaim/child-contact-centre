@@ -1,8 +1,8 @@
-import BirthDate from "../valueObjects/BirthDate";
-import {Id, Name, Address} from "../../common/valueObjects";
-import {InvalidBirthDateError, InvalidChildAddressError, InvalidChildNameError} from "../errors";
-import {InvalidAddressError, InvalidNameError} from "../../common/errors";
-import {AddressType, Gender} from "../../../shared/types";
+import BirthDate from "../../../../domain/child/valueObjects/BirthDate";
+import {Id, Name, Address} from "../../../../domain/common/valueObjects";
+import {InvalidBirthDateError, InvalidChildAddressError, InvalidChildNameError} from "../../../../domain/child/errors";
+import {InvalidAddressError, InvalidNameError} from "../../../../domain/common/errors";
+import {AddressType, Gender} from "../../../../shared/types";
 
 class Child {
     private constructor(public readonly id: Id, public readonly firstName: Name,

@@ -1,4 +1,4 @@
-import {DomainError} from "./index";
+import {DomainError} from "../../../domain/common/errors";
 
 class InvalidIdError extends DomainError {
     readonly code = 'INVALID_ID';

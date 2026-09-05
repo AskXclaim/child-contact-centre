@@ -12,13 +12,22 @@ class BirthDate {
             );
         }
 
-        const today = new Date();
+        const birthdate = BirthDate.toDate(value);
 
-        if (BirthDate.toDate(value) > today) {
-            throw new InvalidBirthDateError("Date of birth cannot be in the future");
+        if (!BirthDate.isWithinChildAgeRange(birthdate)) {
+            throw new InvalidBirthDateError("Date of birth must be between 6 weeks and 16 years old");
+        }
+        return new BirthDate(value);
+    }
+
+    private static isValidDate(value: string): boolean {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+            return false;
         }
 
-        return new BirthDate(value);
+        const date = BirthDate.toDate(value);
+
+        return !Number.isNaN(date.getTime());
     }
 
     /**
@@ -26,7 +35,7 @@ class BirthDate {
      * - more than 6 weeks old
      * - 16 years old or younger
      */
-    isWithinChildAgeRange(asOf: Date = new Date()): boolean {
+    private static isWithinChildAgeRange(asOf: Date = new Date()): boolean {
         const dateOfBirth = BirthDate.toDate(this.value);
 
         const sixWeeksAgo = new Date(asOf);
@@ -43,16 +52,6 @@ class BirthDate {
         );
     }
 
-    private static isValidDate(value: string): boolean {
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-            return false;
-        }
-
-        const date = BirthDate.toDate(value);
-
-        return !Number.isNaN(date.getTime());
-    }
-
     private static toDate(value: string): Date {
         const [year, month, day] = value
             .split("-")
@@ -61,4 +60,5 @@ class BirthDate {
         return new Date(year, month - 1, day);
     }
 }
+
 export default BirthDate;
