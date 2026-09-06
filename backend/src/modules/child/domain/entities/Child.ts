@@ -1,17 +1,17 @@
-import BirthDate from "../../../../domain/child/valueObjects/BirthDate";
-import {Id, Name, Address} from "../../../../domain/common/valueObjects";
-import {InvalidBirthDateError, InvalidChildAddressError, InvalidChildNameError} from "../../../../domain/child/errors";
-import {InvalidAddressError, InvalidNameError} from "../../../../domain/common/errors";
+import {Address, Id, InvalidAddressError, InvalidNameError, Name} from "../../../../shared/domain";
 import {AddressType, Gender} from "../../../../shared/types";
+import {BirthDate, InvalidBirthDateError} from "../index";
+import InvalidChildAddressError from "../errors/InvalidChildAddressError";
+import InvalidChildNameError from "../errors/InvalidChildNameError";
 
-class Child {
+export default class Child {
     private constructor(public readonly id: Id, public readonly firstName: Name,
-                        public readonly middleName: string, public readonly lastName: Name, public readonly gender: Gender,
+                        public readonly middleName: string|null, public readonly lastName: Name, public readonly gender: Gender,
                         public readonly genderAtBirth: Gender, public readonly dateOfBirth: BirthDate, public readonly address: Address,
                         public readonly fatherId: Id, public readonly motherId: Id) {
     }
 
-    static create(id: Id, firstName: string, middleName: string, lastName: string,
+    static create(id: Id, firstName: string, middleName: string|null, lastName: string,
                   gender: Gender, genderAtBirth: Gender, dateOfBirth: string,
                   {addressLineOne, addressLineTwo, city, country, county, postCode}: AddressType, fatherId: Id, motherId: Id): Child {
 
@@ -40,5 +40,3 @@ class Child {
 
     }
 }
-
-export default Child;

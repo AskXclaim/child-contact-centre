@@ -1,10 +1,13 @@
-import {InfrastructureError} from "../../../../../infrastructure/persistence/errors";
+import InfrastructureError from "../../../../../shared/infrastructure/errors/InfrastructureError";
 
 export default class ChildExistsError extends InfrastructureError {
-    readonly code = "CHILD_ALREADY_EXISTS";
+    readonly code;
 
     constructor(message: string) {
-        super(message?.trim());
+        const errorCode = "CHILD_ALREADY_EXISTS";
+        const errorMessage = message?.trim() || errorCode;
+        super(errorMessage);
+        this.code = errorCode;
     }
 }
 

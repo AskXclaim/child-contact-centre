@@ -1,4 +1,5 @@
-import Gender from "./Gender";
 import AddressType from "./AddressType";
+import Gender from "./Gender";
+import Title from "./Title";
 
-export {Gender, AddressType};
+export {AddressType, Gender, Title};

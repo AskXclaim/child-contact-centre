@@ -1,5 +1,5 @@
 import {Db} from "mongodb";
-import {MongoConnection} from "../../../../infrastructure/persistence/mongodb";
+import MongoConnection from "./MongoConnection";
 
 export default class MongoDatabase {
     private readonly database: Db;

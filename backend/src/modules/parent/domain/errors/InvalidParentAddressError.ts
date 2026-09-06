@@ -1,11 +1,12 @@
-import {DomainError} from "../../common/errors";
+import DomainError from "../../../../shared/domain/errors/DomainError";
 
-class InvalidParentAddressError extends DomainError {
-    readonly code = 'INVALID_PARENT_ADDRESS'
+export default class InvalidParentAddressError extends DomainError {
+    readonly code;
 
     constructor(message: string) {
-        super(message);
+        const errorCode = "INVALID_PARENT_ADDRESS";
+        const errorMessage = message?.trim() || errorCode;
+        super(errorMessage);
+        this.code = errorCode;
     }
 }
-
-export default InvalidParentAddressError;

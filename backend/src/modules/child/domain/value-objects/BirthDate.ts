@@ -1,6 +1,6 @@
-import {InvalidBirthDateError} from "../errors";
+import {InvalidBirthDateError} from "../index";
 
-class BirthDate {
+export default class BirthDate {
     private constructor(public readonly value: string) {
     }
 
@@ -12,9 +12,7 @@ class BirthDate {
             );
         }
 
-        const birthdate = BirthDate.toDate(value);
-
-        if (!BirthDate.isWithinChildAgeRange(birthdate)) {
+        if (!BirthDate.isWithinChildAgeRange(value)) {
             throw new InvalidBirthDateError("Date of birth must be between 6 weeks and 16 years old");
         }
         return new BirthDate(value);
@@ -35,13 +33,13 @@ class BirthDate {
      * - more than 6 weeks old
      * - 16 years old or younger
      */
-    private static isWithinChildAgeRange(asOf: Date = new Date()): boolean {
-        const dateOfBirth = BirthDate.toDate(this.value);
+    private static isWithinChildAgeRange(date: string): boolean {
+        const dateOfBirth = BirthDate.toDate(date);
 
-        const sixWeeksAgo = new Date(asOf);
+        const sixWeeksAgo = new Date(date);
         sixWeeksAgo.setDate(sixWeeksAgo.getDate() - 42);
 
-        const sixteenYearsAgo = new Date(asOf);
+        const sixteenYearsAgo = new Date(date);
         sixteenYearsAgo.setFullYear(
             sixteenYearsAgo.getFullYear() - 16
         );
@@ -60,5 +58,3 @@ class BirthDate {
         return new Date(year, month - 1, day);
     }
 }
-
-export default BirthDate;

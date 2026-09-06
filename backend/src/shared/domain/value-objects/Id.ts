@@ -1,8 +1,8 @@
-class Id {
+export default class Id {
     private constructor(public readonly value: string) {
     }
 
-    static create(value: string): Id {
+   public static create(value: string): Id {
         const id = value?.trim();
         if (!id)
             throw new Error('Id cannot be empty');
@@ -12,5 +12,3 @@ class Id {
         return new Id(id);
     }
 }
-
-export default Id;

@@ -1,9 +1,10 @@
-import {RegisterChildSchema, RegisterChildParentSchema} from "../../../../../application/child/register-child-use-case/command";
+import {ChildSchema} from "../../index";
 import * as z from "zod";
+import {ParentSchema} from "../../../../parent/application";
 
 export const RegisterChildCommandSchema = z.object({
-    child: RegisterChildSchema,
-    father: RegisterChildParentSchema,
-    mother: RegisterChildParentSchema
+    child: ChildSchema,
+    father: ParentSchema,
+    mother: ParentSchema
 });
 export type RegisterChildCommand = z.infer<typeof RegisterChildCommandSchema>;

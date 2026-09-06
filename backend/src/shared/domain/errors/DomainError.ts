@@ -1,13 +1,4 @@
-abstract class DomainError extends Error {
-    abstract readonly code: string;
-   protected constructor(message: string) {
-        const msg = message?.trim();
-        if (!msg)
-            throw new Error("Message cannot be empty");
+import ContactCentreError from "../../ports/ContactCentreError";
 
-        super(msg);
-        this.name = this.constructor.name;
-    }
+export default abstract class DomainError extends ContactCentreError {
 }
-
-export default DomainError;

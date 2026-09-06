@@ -1,12 +1,13 @@
-import {DomainError} from "../../common/errors";
+import DomainError from "../../../../shared/domain/errors/DomainError";
 
-class InvalidChildName extends DomainError {
-    readonly code = "INVALID_CHILD_NAME";
+export default class InvalidChildNameError extends DomainError {
+    readonly code ;
 
     constructor(message: string) {
-        super(message);
+        const errorCode = "INVALID_CHILD_NAME";
+        const errorMessage = message?.trim() || errorCode;
+        super(errorMessage);
+        this.code = errorCode;
     }
 
 }
-
-export default InvalidChildName;

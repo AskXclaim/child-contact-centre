@@ -1,11 +1,12 @@
-import {DomainError} from "../../common/errors";
+import DomainError from "../../../../shared/domain/errors/DomainError";
 
-class InvalidBirthDateError extends DomainError {
-    readonly code = "Invalid_Birth_Date";
+export default class InvalidBirthDateError extends DomainError {
+    readonly code;
 
     constructor(message: string) {
-        super(message);
+        const errorCode = "Invalid_Birth_Date";
+        const errorMessage = message?.trim() || errorCode;
+        super(errorMessage);
+        this.code = errorCode;
     }
 }
-
-export default InvalidBirthDateError;

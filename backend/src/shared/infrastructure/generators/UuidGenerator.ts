@@ -1,8 +1,6 @@
-import {IdGenerator} from "../../../application/common";
+import {IdGenerator} from "../../domain";
 import {randomUUID} from "node:crypto";
 
-class UuidGenerator implements IdGenerator {
-    generate(): string {
-        return randomUUID();
-    }
+export default class UuidGenerator implements IdGenerator {
+    generate = (): string => randomUUID();
 }

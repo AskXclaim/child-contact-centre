@@ -1,10 +1,10 @@
-import RegisterChildUseCase from "./RegisterChildUseCase";
-import {RegisterChildCommand} from "../../../../application/child/register-child-use-case/command";
-import {ChildRepository} from "../../../../application/child/repository";
-import {Child} from "../../../domain/child/entities";
-import {IdGenerator} from "../../../../application/common";
+import {RegisterChildUseCase,ChildRepository,RegisterChildCommand} from "../index";
+import {Id} from "../../../../shared/domain";
+import {IdGenerator} from "../../../../shared/domain";
+import {Child} from "../../domain";
+import Parent from "../../../parent/domain/entities/Parent";
 
-class RegisterChildService implements RegisterChildUseCase {
+export default class RegisterChildService implements RegisterChildUseCase {
     constructor(private readonly idGenerator: IdGenerator,private readonly childRepository: ChildRepository, private readonly parentRepository:ParentRepository) {
     }
 
@@ -14,20 +14,18 @@ class RegisterChildService implements RegisterChildUseCase {
         const father = command.father;
         const mother = command.mother;
 
-        const fatherId= this.idGenerator.generate();
-        const motherId= this.idGenerator.generate();
-        const childId = this.idGenerator.generate();
+        const fatherId=Id.create (this.idGenerator.generate());
+        const motherId=Id.create (this.idGenerator.generate());
+        const childId =Id.create ( this.idGenerator.generate());
 
-        const domainFather = Father.create(fatherId, father.firstName, father.middleName, father.lastName,
-            father.dateOfBirth, father.gender, father.genderAtBirth, father.address);
-        const domainMother = Mother.create(motherId, mother.firstName, mother.middleName, mother.lastName,
-            mother.dateOfBirth, mother.gender, mother.genderAtBirth, mother.address);
-        const domainChild = Child.create(childId, child.firstName, child.middleName, child.lastName,
-            child.dateOfBirth, child.gender, child.genderAtBirth, child.addres, fatherId, motherId);
+        const domainFather = Parent.create(fatherId, father.title, father.firstName, father.middleName, father.lastName,
+             father.gender, father.address);
+        const domainMother = Parent.create(motherId,mother.title, mother.firstName, mother.middleName, mother.lastName,
+            mother.gender,  mother.address);
+        const domainChild = Child.create(childId, child.firstName, child.middleName?.trim()||null, child.lastName,
+            child.gender, child.genderAtBirth, child.dateOfBirth,child.address, fatherId, motherId);
 
         return Promise.resolve("");
     }
 
 }
-
-export default RegisterChildService

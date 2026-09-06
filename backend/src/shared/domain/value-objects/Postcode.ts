@@ -1,16 +1,18 @@
-class PostCode {
+import InvalidAddressError from "../errors/InvalidAddressError";
+
+export default class Postcode {
 
     private constructor(public readonly value: string) {
     }
 
-    static create(postcode: string): PostCode {
-        const normalised = value
+    public static create(postcode: string): Postcode {
+        const normalised = postcode
             .trim()
             .toUpperCase()
             .replace(/\s+/g, "");
 
         if (!Postcode.isValid(normalised)) {
-            throw new InvalidAddressError(`Invalid UK postcode: ${value}`);
+            throw new InvalidAddressError(`Invalid UK postcode: ${postcode}`);
         }
 
         return new Postcode(Postcode.format(normalised));
@@ -23,9 +25,5 @@ class PostCode {
         return postcodeRegex.test(value);
     }
 
-    private static format(value: string): string {
-        return `${value.slice(0, -3)} ${value.slice(-3)}`;
-    }
+    private static format = (value: string): string => `${value.slice(0, -3)} ${value.slice(-3)}`;
 }
-
-export default PostCode;

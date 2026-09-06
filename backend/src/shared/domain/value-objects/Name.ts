@@ -1,10 +1,10 @@
 import InvalidNameError from "../errors/InvalidNameError";
 
-class Name {
+export default class Name {
     private constructor(public readonly value: string) {
     }
 
-    static create(value: string): Name {
+   public static create(value: string): Name {
         const name = value?.trim();
         if (!name)
             throw new InvalidNameError("Name cannot be empty");
@@ -14,5 +14,3 @@ class Name {
         return new Name(name);
     }
 }
-
-export default Name;

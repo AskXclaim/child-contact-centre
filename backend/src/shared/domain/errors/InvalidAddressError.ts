@@ -1,10 +1,8 @@
-import {DomainError} from "../../../domain/common/errors";
+import DomainError from "./DomainError";
 
-class InvalidAddressError extends DomainError {
+export default class InvalidAddressError extends DomainError {
     readonly code = 'INVALID_ADDRESS';
     constructor(message: string) {
         super(message);
     }
 }
-
-export default InvalidAddressError;

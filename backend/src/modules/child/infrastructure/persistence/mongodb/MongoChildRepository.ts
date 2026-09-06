@@ -1,10 +1,9 @@
-import {ChildRepository} from "../../../../../application/child/repository";
-import Child from "../../../domain/child/entities/Child";
+import ChildRepository from "../../../application/repositories/ChildRepository";
 import {Collection} from "mongodb";
-import {BirthDate} from "../../../domain/child/valueObjects";
-import {ChildExistsError} from "../../../../../infrastructure/persistence/errors";
+import {BirthDate, Child} from "../../../domain";
+import ChildExistsError from "../errors/ChildExistsError";
 
-class MongoChildRepository implements ChildRepository {
+export default class MongoChildRepository implements ChildRepository {
     constructor(private readonly collection: Collection) {
     }
 

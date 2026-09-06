@@ -1,7 +1,6 @@
-import {InvalidAddressError} from "../errors";
-import {Postcode} from "./index";
+import {Postcode, InvalidAddressError} from "../index";
 
-class Address {
+export default class Address {
     private constructor(
         public readonly addressLineOne: string,
         public readonly addressLineTwo: string | null,
@@ -12,8 +11,8 @@ class Address {
     ) {
     }
 
-    static create(addressLineOne: string, addressLineTwo: string | null, city: string,
-                  county: string | null, country: string, postCode: string): Address {
+    public static create(addressLineOne: string, addressLineTwo: string | null, city: string,
+                         county: string | null, country: string, postCode: string): Address {
         const addressLineObj = addressLineOne.trim();
         const cityObj = city.trim();
         const countryObj = country.trim();
@@ -34,5 +33,3 @@ class Address {
         return new Address(addressLineObj, addressLineTwo, cityObj, county, countryObj, postCodeObj);
     }
 }
-
-export default Address;

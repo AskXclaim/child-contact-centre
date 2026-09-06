@@ -1,8 +1,8 @@
 type AddressType = {
     addressLineOne: string;
-    addressLineTwo: string;
+    addressLineTwo: string|null;
     city: string;
-    county: string;
+    county: string|null;
     country: string;
     postCode: string;
 };
