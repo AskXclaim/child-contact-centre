@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_AskXclaim_child_contact_centre_1790696704771-pr-trigger-input-set
+  identifier: Build_AskXclaim_child_contact_centre_1790696704771prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: Vine_Contact_Centre
+  pipeline:
+    identifier: Build_AskXclaim_child_contact_centre_1790696704771
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
