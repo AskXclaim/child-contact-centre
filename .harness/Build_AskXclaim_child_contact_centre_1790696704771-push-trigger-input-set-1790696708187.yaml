@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_AskXclaim_child_contact_centre_1790696704771-push-trigger-input-set
+  identifier: Build_AskXclaim_child_contact_centre_1790696704771pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: Vine_Contact_Centre
+  pipeline:
+    identifier: Build_AskXclaim_child_contact_centre_1790696704771
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
