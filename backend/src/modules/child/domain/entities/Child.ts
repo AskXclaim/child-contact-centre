@@ -1,19 +1,18 @@
 import {Address, Id, InvalidAddressError, InvalidNameError, Name} from "../../../../shared/domain";
-import {AddressType, Gender} from "../../../../shared/types";
+import {AddressType, GenderType} from "../../../../shared/types";
 import {BirthDate, InvalidBirthDateError} from "../index";
 import InvalidChildAddressError from "../errors/InvalidChildAddressError";
 import InvalidChildNameError from "../errors/InvalidChildNameError";
 
 export default class Child {
     private constructor(public readonly id: Id, public readonly firstName: Name,
-                        public readonly middleName: string|null, public readonly lastName: Name, public readonly gender: Gender,
-                        public readonly genderAtBirth: Gender, public readonly dateOfBirth: BirthDate, public readonly address: Address,
-                        public readonly fatherId: Id, public readonly motherId: Id) {
+                        public readonly middleName: string|null, public readonly lastName: Name, public readonly gender: GenderType,
+                        public readonly genderAtBirth: GenderType, public readonly dateOfBirth: BirthDate, public readonly address: Address) {
     }
 
     static create(id: Id, firstName: string, middleName: string|null, lastName: string,
-                  gender: Gender, genderAtBirth: Gender, dateOfBirth: string,
-                  {addressLineOne, addressLineTwo, city, country, county, postCode}: AddressType, fatherId: Id, motherId: Id): Child {
+                  gender: GenderType, genderAtBirth: GenderType, dateOfBirth: string,
+                  {addressLineOne, addressLineTwo, city, country, county, postCode}: AddressType): Child {
 
         try {
             const firstNameObj = Name.create(firstName);
@@ -23,8 +22,7 @@ export default class Child {
             (addressLineOne, addressLineTwo, city, county, country, postCode);
 
             return new Child(id, firstNameObj, middleName, lastNameObj,
-                gender, genderAtBirth, dateOfBirthObj, addressObj,
-                fatherId, motherId);
+                gender, genderAtBirth, dateOfBirthObj, addressObj);
         } catch (error) {
             if (error instanceof InvalidNameError)
                 throw new InvalidChildNameError(error.message);

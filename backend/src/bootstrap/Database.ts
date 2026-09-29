@@ -1,6 +1,6 @@
 import config from "../config";
-import {MongoConnection} from "../infrastructure/persistence/mongodb";
-import {MongoDatabase} from "../infrastructure/persistence/mongodb";
+import {MongoConnection} from "../shared/infrastructure/index";
+import {MongoDatabase} from "../shared/infrastructure/index";
 
 const createDatabase = async (): Promise<MongoDatabase> => {
     const mongo = new MongoConnection(config.MONGO_URI);

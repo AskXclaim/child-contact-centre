@@ -1,4 +1,4 @@
-import ChildRepository from "../../../application/repositories/ChildRepository";
+import ChildRepository from "../../../application/ports/ChildRepository";
 import {Collection} from "mongodb";
 import {BirthDate, Child} from "../../../domain";
 import ChildExistsError from "../errors/ChildExistsError";

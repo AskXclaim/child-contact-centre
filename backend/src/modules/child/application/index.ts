@@ -3,7 +3,7 @@ import {ChildSchema, RegisterChild} from "./register-child/schemas/ChildSchema";
 import {RegisterChildCommandSchema, RegisterChildCommand} from "./register-child/schemas/RegisterChildCommandSchema";
 import RegisterChildService from "./register-child/RegisterChildService";
 import RegisterChildUseCase from "./register-child/RegisterChildUseCase";
-import ChildRepository from "./repositories/ChildRepository";
+import ChildRepository from "./ports/ChildRepository";
 
 export {
     BirthDateSchema, DateOfBirth, ChildSchema, RegisterChild,

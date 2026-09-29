@@ -1,15 +1,15 @@
 import {Address, Id, InvalidNameError, Name} from "../../../../shared/domain";
-import {AddressType, Gender, Title} from "../../../../shared/types";
+import {AddressType, GenderType, TitleType} from "../../../../shared/types";
 import {InvalidParentNameError} from "../index";
 
 export default class Parent {
-    private constructor(public readonly id: Id, public readonly title: Title, public readonly firstName: Name,
-                        public readonly middleName: string|null, public readonly lastName: Name,
-                        public readonly gender: Gender, public readonly address: Address) {
+    private constructor(public readonly id: Id, public readonly title: TitleType, public readonly firstName: Name,
+                        public readonly middleName: string | null, public readonly lastName: Name,
+                        public readonly gender: GenderType, public readonly address: Address) {
     }
 
-    static create(id: Id, title: Title, firstName: string, middleName: string|null, lastName: string,
-                  gender: Gender, {
+    static create(id: Id, title: TitleType, firstName: string, middleName: string | null, lastName: string,
+                  gender: GenderType, {
                       addressLineOne,
                       addressLineTwo,
                       city,
