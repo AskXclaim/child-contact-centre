@@ -1,7 +1,8 @@
 import ChildRepository from "../../../application/ports/ChildRepository";
 import {Collection} from "mongodb";
 import {BirthDate, Child} from "../../../domain";
-import ChildExistsError from "../errors/ChildExistsError";
+import ChildInfrastructureError from "../errors/ChildInfrastructureError";
+import { ChildInfrastructureErrorCode } from "../errors/ChildInfrastructureErrorCode";
 
 export default class MongoChildRepository implements ChildRepository {
     constructor(private readonly collection: Collection) {
@@ -10,7 +11,7 @@ export default class MongoChildRepository implements ChildRepository {
     async save(child: Child): Promise<string> {
         // check if child exists
         if (!(await this.existsByNameAndDateOfBirth(child.firstName.value, child.lastName.value, child.dateOfBirth))) {
-            throw new ChildExistsError("Child already exists");
+            throw new ChildInfrastructureError("Child already exists", ChildInfrastructureErrorCode.ChildAlreadyExists);
         }
         // Add child to collection
         await this.collection.insertOne({
@@ -20,9 +21,7 @@ export default class MongoChildRepository implements ChildRepository {
             dateOfBirth: child.dateOfBirth.value,
             gender: child.gender,
             genderAtBirth: child.genderAtBirth,
-            address: child.address,
-            fatherId: child.fatherId,
-            motherId: child.motherId,
+            address: child.address
         });
 
         // return child id

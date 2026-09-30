@@ -1,12 +1,16 @@
-import {InfrastructureError} from "../../shared/infrastructure";
+import ContactCentreError from "../../shared/ports/ContactCentreError";
+import { StorageConnectionErrorCode } from "./StorageConnectionErrorCode";
 
-export default class StorageConnectionError extends InfrastructureError {
-    readonly code: string;
+export default class StorageConnectionError extends ContactCentreError {
+  readonly code: string;
 
-    constructor(message: string, errorCode: string = "STORAGE_ERROR") {
-        message = message || errorCode || "STORAGE_ERROR";
-        super(message);
-        this.code = errorCode;
-        this.name = this.constructor.name;
-    }
+  constructor(
+    message: string,
+    errorCode: StorageConnectionErrorCode = StorageConnectionErrorCode.STORAGE_ERROR,
+  ) {
+    message = message || errorCode;
+    super(message);
+    this.code = errorCode;
+    this.name = this.constructor.name;
+  }
 }

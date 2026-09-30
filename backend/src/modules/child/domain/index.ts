@@ -1,9 +1,6 @@
-import InvalidBirthDateError from "./errors/InvalidBirthDateError"
-import InvalidChildAddressError from "./errors/InvalidChildAddressError"
-import InvalidChildNameError from "./errors/InvalidChildNameError"
+import ChildDomainError from "../domain/errors/ChildDomainError";
+import { ChildDomainErrorCode } from "./errors/ChildDomainErrorCode";
+import BirthDate from "./value-objects/BirthDate";
+import Child from "./entities/Child";
 
-import BirthDate from "./value-objects/BirthDate"
-
-import Child from "./entities/Child"
-
-export {InvalidBirthDateError, InvalidChildAddressError, InvalidChildNameError, BirthDate, Child }
+export { ChildDomainError, ChildDomainErrorCode, BirthDate, Child };

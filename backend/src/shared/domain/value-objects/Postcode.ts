@@ -1,29 +1,24 @@
-import InvalidAddressError from "../errors/InvalidAddressError";
+import DomainError from "../errors/DomainError";
+import { DomainErrorCode } from "../errors/DomainErrorCode";
 
 export default class Postcode {
+  private constructor(public readonly value: string) {}
 
-    private constructor(public readonly value: string) {
+  public static create(postcode: string): Postcode {
+    const normalised = postcode.trim().toUpperCase().replace(/\s+/g, "");
+
+    if (!Postcode.isValid(normalised)) {
+      throw new DomainError(`Invalid UK postcode: ${postcode}`, DomainErrorCode.InvalidPostcode);
     }
 
-    public static create(postcode: string): Postcode {
-        const normalised = postcode
-            .trim()
-            .toUpperCase()
-            .replace(/\s+/g, "");
+    return new Postcode(Postcode.format(normalised));
+  }
 
-        if (!Postcode.isValid(normalised)) {
-            throw new InvalidAddressError(`Invalid UK postcode: ${postcode}`);
-        }
+  private static isValid(value: string): boolean {
+    const postcodeRegex = /^(GIR0AA|[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2})$/;
 
-        return new Postcode(Postcode.format(normalised));
-    }
+    return postcodeRegex.test(value);
+  }
 
-    private static isValid(value: string): boolean {
-        const postcodeRegex =
-            /^(GIR0AA|[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2})$/;
-
-        return postcodeRegex.test(value);
-    }
-
-    private static format = (value: string): string => `${value.slice(0, -3)} ${value.slice(-3)}`;
+  private static format = (value: string): string => `${value.slice(0, -3)} ${value.slice(-3)}`;
 }
