@@ -1,4 +1,4 @@
-import AddressData from "./AddressData";
+import { AddressType } from "../../../../../shared/types";
 
 export default interface ParentData {
     _id: string;
@@ -7,5 +7,5 @@ export default interface ParentData {
     middleName: string | null;
     lastName: string;
     gender: string;
-    address: AddressData;
+    address: AddressType;
 }
