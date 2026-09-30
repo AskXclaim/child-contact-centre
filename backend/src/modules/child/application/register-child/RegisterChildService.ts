@@ -12,7 +12,7 @@ export default class RegisterChildService implements RegisterChildUseCase {
     private readonly parentRepository: ParentRepository,
   ) {}
 
-  register(command: RegisterChildCommand): Promise<string> {
+  async register(command: RegisterChildCommand): Promise<string> {
     // convert to child entity
     const child = command.child;
     const father = command.father;
@@ -55,6 +55,10 @@ export default class RegisterChildService implements RegisterChildUseCase {
       ],
     );
 
-    return Promise.resolve("");
+    await this.parentRepository.add(domainFather);
+    await this.parentRepository.add(domainMother);
+    await this.childRepository.save(domainChild);
+
+    return Promise.resolve(childId.value);
   }
 }

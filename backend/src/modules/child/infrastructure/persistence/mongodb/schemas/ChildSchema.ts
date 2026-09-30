@@ -1,22 +1,13 @@
-import mongoose, { HydratedDocument, Schema } from "mongoose";
+import { HydratedDocument, model, Schema } from "mongoose";
+import ChildData from "../../ports/ChildData";
 import { Genders } from "../../../../../../shared/types";
-import { Titles } from "../../../../../../shared/types";
-import { AddressSchema } from "./AddressSchema";
-import ParentData from "../../ports/ParentData";
+import { AddressSchema } from "../../../../../parent/infrastructure/persistence/mongodb/schemas/AddressSchema";
 
-const ParentSchema = new Schema<ParentData>({
+const ChildSchema = new Schema<ChildData>({
   _id: {
     type: String,
     required: [true, "id is required"],
     minLength: [5, "id must be at least 5 characters long"],
-  },
-  title: {
-    type: String,
-    required: true,
-    enum: {
-      values: Titles,
-      message: "Title is required and has to be one of the following: " + Titles.join(", "),
-    },
   },
   firstName: {
     type: String,
@@ -47,9 +38,17 @@ const ParentSchema = new Schema<ParentData>({
       message: "Gender is required and has to be one of the following: " + Genders.join(", "),
     },
   },
+  birthGender: {
+    type: String,
+    required: true,
+    enum: {
+      values: Genders,
+      message: "Birth gender is required and has to be one of the following: " + Genders.join(", "),
+    },
+  },
   address: { type: AddressSchema, required: [true, "Address is required"] },
 });
 
-const ParentMongoModel = mongoose.model<ParentData>("Parent", ParentSchema);
-export default ParentMongoModel;
-export type ParentDocument = HydratedDocument<ParentData>;
+const ChildMongoModel = model<ChildData>("Child", ChildSchema);
+export default ChildMongoModel;
+export type ChildDocument = HydratedDocument<ChildData>;

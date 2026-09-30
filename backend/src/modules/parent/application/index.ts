@@ -1,3 +1,3 @@
-import {ParentSchema, ParentInput} from "./schemas/ParentSchema";
+import { ParentSchema, ParentInput } from "./schemas/ParentSchema";
 
-export {ParentSchema, ParentInput};
+export { ParentSchema, ParentInput };

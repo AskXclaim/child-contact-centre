@@ -1,8 +1,4 @@
-import {
-  Address,
-  Id,
-  Name,
-} from "../../../../shared/domain";
+import { Address, Id, Name } from "../../../../shared/domain";
 import { AddressType, GenderType } from "../../../../shared/types";
 import { BirthDate } from "../index";
 import { ChildParent } from "../ports/ChildParent";

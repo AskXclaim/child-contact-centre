@@ -1,5 +1,5 @@
-import ChildInfrastructureError from "./persistence/errors/ChildInfrastructureError";
-import { ChildInfrastructureErrorCode } from "./persistence/errors/ChildInfrastructureErrorCode";
+import ChildPersistenceError from "./persistence/errors/ChildPersistenceError";
+import { ChildPersistenceErrorCode } from "./persistence/errors/ChildPersistenceErrorCode";
 import MongoChildRepository from "./persistence/mongodb/MongoChildRepository";
 
-export  { ChildInfrastructureError, ChildInfrastructureErrorCode, MongoChildRepository };
+export { ChildPersistenceError, ChildPersistenceErrorCode, MongoChildRepository };

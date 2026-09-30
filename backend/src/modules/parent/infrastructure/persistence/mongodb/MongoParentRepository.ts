@@ -23,7 +23,7 @@ export default class MongoParentRepository implements ParentRepository {
           .join("\n");
         throw new ParentPersistenceError(
           validationErrors,
-          ParentPersistenceErrorCode.InvalidParentValue,
+          ParentPersistenceErrorCode.InvalidParentValues,
         );
       }
       const message =

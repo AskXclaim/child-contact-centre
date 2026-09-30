@@ -1,6 +1,6 @@
 export const ParentPersistenceErrorCode = {
-  PARENT_NOT_FOUND: "PARENT_NOT_FOUND",
-  InvalidParentValue: "INVALID_PARENT_VALUE",
+  ParentNotFound: "PARENT_NOT_FOUND",
+  InvalidParentValues: "INVALID_PARENT_VALUES",
   UnknownPersistenceError: "UNKNOWN_PERSISTENCE_ERROR",
 };
 

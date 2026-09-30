@@ -1,4 +1,4 @@
-import {Child}  from '../../domain/index';
+import { Child } from "../../domain/index";
 export default interface ChildRepository {
-    save (child: Child ): Promise<string>;
+  save(child: Child): Promise<string>;
 }

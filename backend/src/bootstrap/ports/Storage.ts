@@ -1,3 +1,3 @@
 export default interface Storage {
-    connect(): Promise<void>;
+  connect(): Promise<void>;
 }

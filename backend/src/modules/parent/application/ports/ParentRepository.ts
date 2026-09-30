@@ -1,5 +1,5 @@
-import {Parent} from "../../domain";
+import { Parent } from "../../domain";
 
 export default interface ParentRepository {
-    add(parent: Parent): Promise<string>;
+  add(parent: Parent): Promise<string>;
 }

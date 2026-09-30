@@ -32,19 +32,20 @@ export default class BirthDate {
 
   /**
    * Returns true if the person is:
-   * - more than 6 weeks old
+   * - 6 weeks old or older
    * - 16 years old or younger
    */
   private static isWithinChildAgeRange(date: string): boolean {
     const dateOfBirth = BirthDate.toDate(date);
 
-    const sixWeeksAgo = new Date(date);
+    const currentDate = Date.now();
+    const sixWeeksAgo = new Date(currentDate);
     sixWeeksAgo.setDate(sixWeeksAgo.getDate() - 42);
 
-    const sixteenYearsAgo = new Date(date);
+    const sixteenYearsAgo = new Date(currentDate);
     sixteenYearsAgo.setFullYear(sixteenYearsAgo.getFullYear() - 16);
 
-    return dateOfBirth < sixWeeksAgo && dateOfBirth >= sixteenYearsAgo;
+    return dateOfBirth >= sixteenYearsAgo && dateOfBirth <= sixWeeksAgo;
   }
 
   private static toDate(value: string): Date {

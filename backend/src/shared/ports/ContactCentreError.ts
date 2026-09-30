@@ -1,11 +1,10 @@
 export default abstract class ContactCentreError extends Error {
-    abstract readonly code: string;
-   protected constructor(message: string) {
-        const msg = message?.trim();
-        if (!msg)
-            throw new Error("Message cannot be empty");
+  abstract readonly code: string;
+  protected constructor(message: string) {
+    const msg = message?.trim();
+    if (!msg) throw new Error("Message cannot be empty");
 
-        super(msg);
-        this.name = this.constructor.name;
-    }
+    super(msg);
+    this.name = this.constructor.name;
+  }
 }
