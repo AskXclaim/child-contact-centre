@@ -1,4 +1,5 @@
 import { AddressType } from "../../../../../shared/types";
+import { ChildParentData } from "./ChildParentData";
 
 export default interface ChildData {
   _id: string;
@@ -9,4 +10,5 @@ export default interface ChildData {
   birthGender: string;
   birthDate: Date;
   address: AddressType;
+  parents:ChildParent[]
 }

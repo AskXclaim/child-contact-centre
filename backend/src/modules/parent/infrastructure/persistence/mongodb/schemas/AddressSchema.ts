@@ -1,7 +1,8 @@
 import { Schema } from "mongoose";
+import { AddressType } from "../../../../../../shared/types";
 
 //Todo write post code validation
-export const AddressSchema = new Schema(
+export const AddressSchema = new Schema<AddressType>(
   {
     addressLineOne: { type: String, required: [true, "Address line one is required"] },
     addressLineTwo: { type: String, default: null },

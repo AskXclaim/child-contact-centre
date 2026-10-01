@@ -47,6 +47,10 @@ const ChildSchema = new Schema<ChildData>({
     },
   },
   address: { type: AddressSchema, required: [true, "Address is required"] },
+  parents: {
+    type: [String],
+    required: [true, "Parents are required"],
+  },
 });
 
 const ChildMongoModel = model<ChildData>("Child", ChildSchema);
