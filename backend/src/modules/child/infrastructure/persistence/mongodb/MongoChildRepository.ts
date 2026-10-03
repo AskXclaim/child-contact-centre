@@ -14,11 +14,11 @@ export default class MongoChildRepository implements ChildRepository {
   async save(child: Child): Promise<string> {
     // check if child exists
     if (
-      (await this.existsByNameAndDateOfBirth(
+      await this.existsByNameAndDateOfBirth(
         child.firstName.value,
         child.lastName.value,
         child.dateOfBirth,
-      ))
+      )
     ) {
       throw new ChildPersistenceError(
         "Child already exists",

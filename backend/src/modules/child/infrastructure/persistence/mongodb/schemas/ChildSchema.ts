@@ -2,6 +2,7 @@ import { HydratedDocument, model, Schema } from "mongoose";
 import ChildData from "../../ports/ChildData";
 import { Genders } from "../../../../../../shared/types";
 import { AddressSchema } from "../../../../../parent/infrastructure/persistence/mongodb/schemas/AddressSchema";
+import ChildParentSchema from "./ChildParentSchema";
 
 const ChildSchema = new Schema<ChildData>({
   _id: {
@@ -48,7 +49,7 @@ const ChildSchema = new Schema<ChildData>({
   },
   address: { type: AddressSchema, required: [true, "Address is required"] },
   parents: {
-    type: [String],
+    type: [ChildParentSchema],
     required: [true, "Parents are required"],
   },
 });

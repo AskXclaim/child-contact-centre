@@ -12,6 +12,7 @@ export default class ChildMapper {
       birthGender: child.genderAtBirth,
       birthDate: new Date(child.dateOfBirth.value),
       address: { ...child.address, postCode: child.address.postCode.value },
+      parents: child.parents,
     };
   };
 }
